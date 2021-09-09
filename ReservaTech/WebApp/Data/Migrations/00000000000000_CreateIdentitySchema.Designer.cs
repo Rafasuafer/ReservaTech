@@ -5,8 +5,6 @@ using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using System;
-using Repos;
-using WebApp.Data;
 
 namespace WebApp.Data.Migrations
 {

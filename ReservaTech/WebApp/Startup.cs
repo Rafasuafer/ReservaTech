@@ -12,8 +12,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text.Unicode;
 using System.Threading.Tasks;
-using Repos;
 using WebApp.Data;
+using Entities.Core;
 
 namespace WebApp
 {
@@ -34,7 +34,7 @@ namespace WebApp
                     Configuration.GetConnectionString("DefaultConnection")));
             services.AddDatabaseDeveloperPageExceptionFilter();
 
-            services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
+            services.AddDefaultIdentity<AppUser>(options => options.SignIn.RequireConfirmedAccount = true)
                 .AddEntityFrameworkStores<ReservaTechDbContext>();
             services.AddControllersWithViews();
             
