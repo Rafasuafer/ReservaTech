@@ -6,8 +6,13 @@ using System.Threading.Tasks;
 
 namespace Entities.Core
 {
-    class Unit
+    public class Unit
     {
-        public int Id { get; set; }
+        public virtual  int Id { get; set; }
+        public virtual  int Capacity { get; set; }
+        public virtual  bool IsAvailable { get; set; }
+        
+        //TODO: Reservation
+        //public virtual  List<Appointment> Appointments { get; set; }
     }
 }

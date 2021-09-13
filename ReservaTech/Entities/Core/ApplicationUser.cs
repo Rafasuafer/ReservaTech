@@ -7,10 +7,8 @@ using System.Threading.Tasks;
 
 namespace Entities.Core
 {
-    public class AppUser: IdentityUser
+    public class ApplicationUser: IdentityUser
     {
-        public string Name { get; set; }
-        public string Lastname { get; set; }
-
+        public virtual List<Business> Businesses { get; set; }
     }
 }
