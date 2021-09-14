@@ -9,6 +9,8 @@ namespace Entities.Core
 {
     public class ApplicationUser: IdentityUser
     {
+        public virtual string Name { get; set; }
+        public virtual string LastName { get; set; }
         public virtual List<Business> Businesses { get; set; }
     }
 }
