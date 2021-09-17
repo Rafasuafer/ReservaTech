@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Enums
+﻿namespace Entities.Enums
 {
     public enum BusinessType
     {

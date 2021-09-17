@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Entities.Core
 {
-    public class License
+    public class License : GenericEntity
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]

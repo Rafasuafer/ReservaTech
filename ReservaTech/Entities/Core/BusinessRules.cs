@@ -4,12 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Enums
+namespace Entities.Core
 {
-    public enum AppointmentStatus
-    {
-        Pending = 0,
-        Confirmed = 1,
-        Done = 2
-    }
+	public class BusinessRules: GenericEntity
+	{
+	}
 }
