@@ -11,7 +11,6 @@ namespace Entities.Core
         public virtual  int Capacity { get; set; }
         public virtual  bool IsAvailable { get; set; }
         
-        //TODO: Reservation
-        //public virtual  List<Appointment> Appointments { get; set; }
+        public License License { get; set; }
     }
 }

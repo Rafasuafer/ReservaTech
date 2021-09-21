@@ -10,9 +10,7 @@ namespace Entities.Core
 {
     public class License : GenericEntity
     {
-        [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public virtual  Guid Key { get; set; }
+	    public virtual Guid Key { get; set; } = new Guid();
         public virtual  DateTime Start { get; set; }
         public virtual  DateTime End { get; set; }
         public virtual  bool IsActive { get; set; }

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Entities.Core
 {
-	public class DailySchedule
+	public class DailySchedule: GenericEntity
 	{
 	}
 }
