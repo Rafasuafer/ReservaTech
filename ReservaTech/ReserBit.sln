@@ -5,13 +5,13 @@ VisualStudioVersion = 16.0.31515.178
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Entities", "Entities\Entities.csproj", "{4282A8ED-68F3-40C6-8E6E-A049DB0535AD}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Repos", "Repos\Repos.csproj", "{9AB3C2D9-3DDD-4ED6-87F7-C5BE45B60484}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Data", "Repos\Data.csproj", "{9AB3C2D9-3DDD-4ED6-87F7-C5BE45B60484}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Services", "Services\Services.csproj", "{1A6B6788-3264-45FB-8BE5-C6CF15E261DD}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Interfaces", "Interfaces\Interfaces.csproj", "{2A969232-E026-44B2-BF73-ABABCA40E0F1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "reserbit-api", "reserbit-api\reserbit-api.csproj", "{EF6F8A46-4B8B-42BF-BAA4-335260E9C744}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "reserbit-api", "reserbit-api\reserbit-api.csproj", "{EF6F8A46-4B8B-42BF-BAA4-335260E9C744}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
