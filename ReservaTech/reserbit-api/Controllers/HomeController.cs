@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using reserbit_api.Models;
 using System;
@@ -9,6 +10,7 @@ using System.Threading.Tasks;
 
 namespace reserbit_api.Controllers
 {
+	[Authorize]
 	public class HomeController : Controller
 	{
 		private readonly ILogger<HomeController> _logger;
@@ -18,16 +20,19 @@ namespace reserbit_api.Controllers
 			_logger = logger;
 		}
 
+		[AllowAnonymous]
 		public IActionResult Index()
 		{
 			return View();
 		}
 
+		[AllowAnonymous]
 		public IActionResult Privacy()
 		{
 			return View();
 		}
 
+		[AllowAnonymous]
 		[ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
 		public IActionResult Error()
 		{

@@ -13,6 +13,9 @@ using System.Linq;
 using System.Threading.Tasks;
 using Data.Access;
 using Entities.Core;
+using Services;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc.Authorization;
 
 namespace reserbit_api
 {
@@ -33,9 +36,23 @@ namespace reserbit_api
 					Configuration.GetConnectionString("DefaultConnection")));
 			services.AddDatabaseDeveloperPageExceptionFilter();
 
-			services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = true)
-				.AddEntityFrameworkStores<ApplicationDbContext>();
+			services.AddIdentity<ApplicationUser, IdentityRole>(options => options.SignIn.RequireConfirmedAccount = true)
+				.AddEntityFrameworkStores<ApplicationDbContext>()
+				.AddUserManager<ApplicationUserManager<ApplicationUser>>()
+				.AddDefaultUI()
+				.AddDefaultTokenProviders();
+
 			services.AddControllersWithViews();
+
+			services.AddMvc(options =>
+			{
+				var policy = new AuthorizationPolicyBuilder()
+				.RequireAuthenticatedUser()
+				.Build();
+				options.Filters.Add(new AuthorizeFilter(policy));
+			}).AddXmlDataContractSerializerFormatters();
+
+			services.AddRazorPages();
 		}
 
 		// This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
