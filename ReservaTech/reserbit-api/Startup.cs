@@ -36,7 +36,15 @@ namespace reserbit_api
 					Configuration.GetConnectionString("DefaultConnection")));
 			services.AddDatabaseDeveloperPageExceptionFilter();
 
-			services.AddIdentity<ApplicationUser, IdentityRole>(options => options.SignIn.RequireConfirmedAccount = true)
+			services.AddIdentity<ApplicationUser, IdentityRole>(options =>
+				{
+					options.SignIn.RequireConfirmedAccount = true;
+					options.Password.RequiredLength = 6;
+					options.Password.RequireLowercase = false;
+					options.Password.RequireUppercase = false;
+					options.Password.RequireNonAlphanumeric = false;
+					options.Password.RequireDigit = false;
+				})
 				.AddEntityFrameworkStores<ApplicationDbContext>()
 				.AddUserManager<ApplicationUserManager<ApplicationUser>>()
 				.AddDefaultUI()

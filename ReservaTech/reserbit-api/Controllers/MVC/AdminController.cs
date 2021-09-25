@@ -1,9 +1,11 @@
-﻿using Entities.Core;
+﻿using System.Linq;
+using Entities.Core;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using reserbit_api.Models;
 using Services;
 using System.Threading.Tasks;
+using reserbit_api.Controllers.API;
 
 namespace reserbit_api.Controllers.MVC
 {
@@ -11,23 +13,34 @@ namespace reserbit_api.Controllers.MVC
     {
         private readonly ApplicationUserManager<ApplicationUser> _userManager;
         private readonly RoleManager<IdentityRole> _roleManager;
-
+        private ApplicationUserController userController; 
         public AdminController(ApplicationUserManager<ApplicationUser> userManager,
             RoleManager<IdentityRole> roleManager
             )
         {
+	        userController = new ApplicationUserController(userManager);
             _userManager = userManager;
             _roleManager = roleManager;
         }
 
+
+        public IActionResult Index()
+        {
+	        return View();
+        }
+        public IActionResult RoleList()
+        {
+	        var roles = _roleManager.Roles;
+	        return View(roles);
+        }
         [HttpGet]
-        public IActionResult CreateRole()
+        public IActionResult RoleCreate()
         {
             return View();
         }
 
         [HttpPost]
-        public async Task<IActionResult> CreateRole(CreateRoleViewModel model)
+        public async Task<IActionResult> RoleCreate(CreateRoleViewModel model)
         {
             if (ModelState.IsValid)
             {
@@ -36,7 +49,7 @@ namespace reserbit_api.Controllers.MVC
 
                 if (result.Succeeded)
                 {
-                    return RedirectToAction("index", "home");
+                    return RedirectToAction("index", "Admin");
                 }
 
                 foreach (var error in result.Errors)
@@ -47,6 +60,17 @@ namespace reserbit_api.Controllers.MVC
 
             return View(model);
 
+        }
+
+        public IActionResult UserList()
+        {
+	        var users = userController.GetAll();
+            return View(users);
+        }
+
+        public IActionResult UserCreate()
+        {
+	        return View();
         }
     }
 }
