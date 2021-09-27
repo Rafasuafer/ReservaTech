@@ -72,5 +72,14 @@ namespace reserbit_api.Controllers.MVC
         {
 	        return View();
         }
+        [HttpPost]
+        public IActionResult UserCreate()
+        {
+	        return View();
+        }
+        public IActionResult UserEdit()
+        {
+	        return View();
+        }
     }
 }

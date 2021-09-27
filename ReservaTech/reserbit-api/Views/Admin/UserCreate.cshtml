@@ -1,18 +1,19 @@
-﻿@model dynamic
+﻿@model CreateRoleViewModel
 
-@{
-    Layout = null;
+@{ 
+    ViewBag.Title = "Crear Rol";
 }
 
-<!DOCTYPE html>
+<h1>Crear rol</h1>
 
-<html>
-<head>
-    <title>title</title>
-</head>
-<body>
-<div>
-      
-</div>
-</body>
-</html>
+<div class="row col-md-12">
+<form method="post">
+    <div asp-validation-summary="All" class="text-danger">
+        <div class="form-group">
+            <label asp-for="RoleName">Nombre del rol</label>
+            <input asp-for="RoleName" class="form-control" />
+            <span asp-validation-for="RoleName" class="text-danger"></span>
+        </div>
+    </div>
+    <button type="submit" class="btn btn-primary">Crear rol</button>
+</form>
