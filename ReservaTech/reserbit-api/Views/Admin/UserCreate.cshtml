@@ -1,19 +1,27 @@
-﻿@model CreateRoleViewModel
+﻿@model CreateUserViewModel
 
-@{ 
-    ViewBag.Title = "Crear Rol";
+@{
+    ViewBag.Title = "Crear Usuario";
 }
 
-<h1>Crear rol</h1>
-
-<div class="row col-md-12">
 <form method="post">
-    <div asp-validation-summary="All" class="text-danger">
-        <div class="form-group">
-            <label asp-for="RoleName">Nombre del rol</label>
-            <input asp-for="RoleName" class="form-control" />
-            <span asp-validation-for="RoleName" class="text-danger"></span>
-        </div>
+    <h4>Crear usuario</h4>
+    <hr />
+    <div asp-validation-summary="All" class="text-danger"></div>
+    <div class="form-group">
+        <label asp-for="Email"></label>
+        <input asp-for="Email" class="form-control" />
+        <span asp-validation-for="Email" class="text-danger"></span>
     </div>
-    <button type="submit" class="btn btn-primary">Crear rol</button>
+    <div class="form-group">
+        <label asp-for="Password"></label>
+        <input asp-for="Password" class="form-control" />
+        <span asp-validation-for="Password" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="ConfirmPassword"></label>
+        <input asp-for="ConfirmPassword" class="form-control" />
+        <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+    </div>
+    <button type="submit" class="btn btn-primary">Crear usuario</button>
 </form>

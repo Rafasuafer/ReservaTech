@@ -32,21 +32,14 @@ namespace reserbit_api.Controllers.API
 
 		[HttpPost]
 		[Route("~/api/user/register")]
-		public async Task<IActionResult> Register(CreateUserDto dto)
+		public async Task<IdentityResult> Register(CreateUserDto dto)
 		{
-			var result = await _userManager.CreateAsync(
+			return await _userManager.CreateAsync(
 				new ApplicationUser
 				{
 					Email = dto.Email
 				}, 
 				dto.Password);
-			
-			if (result.Succeeded)
-			{
-				return Ok();
-			}
-
-			return BadRequest(result.Errors);
 		}
 
 
