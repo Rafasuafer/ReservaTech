@@ -10,6 +10,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using reserbit_api.Models;
 using Services;
+using SignInResult = Microsoft.AspNetCore.Identity.SignInResult;
 
 namespace reserbit_api.Controllers.API
 {
@@ -17,10 +18,25 @@ namespace reserbit_api.Controllers.API
 	public class ApplicationUserController : Controller
 	{
 		private readonly ApplicationUserManager<ApplicationUser> _userManager;
+		private readonly SignInManager<ApplicationUser> _signInManager;
 
-		public ApplicationUserController(ApplicationUserManager<ApplicationUser> userManager)
+		public ApplicationUserController(
+			ApplicationUserManager<ApplicationUser> userManager,
+			SignInManager<ApplicationUser> signInManager)
 		{
 			_userManager = userManager;
+			_signInManager = signInManager;
+		}
+
+		[HttpPost]
+		[Route("~/api/user/login")]
+		[AllowAnonymous]
+		public async Task<SignInResult> Login([FromBody]LoginRequestDto dto)
+		{
+			//TODO: External Login
+			//var externalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
+
+			return await _signInManager.PasswordSignInAsync(dto.Email, dto.Password, dto.RememberMe, lockoutOnFailure: false);
 		}
 
 		[HttpGet]
@@ -37,6 +53,7 @@ namespace reserbit_api.Controllers.API
 			return await _userManager.CreateAsync(
 				new ApplicationUser
 				{
+					UserName = dto.Email,
 					Email = dto.Email
 				}, 
 				dto.Password);

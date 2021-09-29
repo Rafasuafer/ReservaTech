@@ -14,11 +14,13 @@ namespace reserbit_api.Controllers.MVC
     {
         private readonly RoleManager<IdentityRole> _roleManager;
         private ApplicationUserController appplicationUserController;
-        public AdminController(ApplicationUserManager<ApplicationUser> userManager,
-            RoleManager<IdentityRole> roleManager
+        public AdminController(
+	        ApplicationUserManager<ApplicationUser> userManager,
+            RoleManager<IdentityRole> roleManager,
+            SignInManager<ApplicationUser> signInManager
             )
         {
-	        appplicationUserController = new ApplicationUserController(userManager);
+	        appplicationUserController = new ApplicationUserController(userManager, signInManager);
             _roleManager = roleManager;
         }
 
@@ -82,7 +84,7 @@ namespace reserbit_api.Controllers.MVC
 			        Password = model.Password
 		        });
 
-		        if (result.GetType() == typeof(OkResult))
+		        if (result.Succeeded)
 		        {
 			        return RedirectToAction("UserList", "Admin");
 		        }
