@@ -2,7 +2,7 @@
 
 namespace reserbit_api.Models.Loggin
 {
-    public class LoginInputDto
+    public class LoginInputViewModel
     {
         [Required]
         [EmailAddress]

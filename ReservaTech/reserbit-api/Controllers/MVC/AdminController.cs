@@ -5,18 +5,16 @@ using Microsoft.Extensions.Logging;
 using reserbit_api.Areas.Identity.Pages.Account;
 using reserbit_api.Controllers.API;
 using reserbit_api.Models;
-using reserbit_api.Models.User;
 using Services;
 using System.Threading.Tasks;
 using Entities.DTO;
-using reserbit_api.Controllers.API;
 
 namespace reserbit_api.Controllers.MVC
 {
     public class AdminController : Controller
     {
         private readonly RoleManager<IdentityRole> _roleManager;
-        private ApplicationUserApiController userController;
+        private readonly ApplicationUserApiController appplicationUserController;
 
         public AdminController(
             ApplicationUserManager<ApplicationUser> userManager,
@@ -25,7 +23,7 @@ namespace reserbit_api.Controllers.MVC
             ILogger<LoginModel> logger
             )
         {
-	        appplicationUserController = new ApplicationUserController(userManager, signInManager);
+	        appplicationUserController = new ApplicationUserApiController(userManager, signInManager);
             _roleManager = roleManager;
         }
 
