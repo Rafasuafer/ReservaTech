@@ -8,6 +8,8 @@ using reserbit_api.Models;
 using reserbit_api.Models.User;
 using Services;
 using System.Threading.Tasks;
+using Entities.DTO;
+using reserbit_api.Controllers.API;
 
 namespace reserbit_api.Controllers.MVC
 {
@@ -23,7 +25,7 @@ namespace reserbit_api.Controllers.MVC
             ILogger<LoginModel> logger
             )
         {
-            userController = new ApplicationUserApiController(userManager, signInManager, logger);
+	        appplicationUserController = new ApplicationUserController(userManager, signInManager);
             _roleManager = roleManager;
         }
 
@@ -54,7 +56,7 @@ namespace reserbit_api.Controllers.MVC
 
                 if (result.Succeeded)
                 {
-                    return RedirectToAction("Admin", "RoleList");
+                    return RedirectToAction("RoleList", "Admin");
                 }
 
                 foreach (var error in result.Errors)
@@ -68,7 +70,7 @@ namespace reserbit_api.Controllers.MVC
 
         public IActionResult UserList()
         {
-            var users = userController.GetAll();
+	        var users = appplicationUserController.GetAll();
             return View(users);
         }
 
@@ -77,26 +79,34 @@ namespace reserbit_api.Controllers.MVC
         {
             return View();
         }
-
         [HttpPost]
-        public async Task<IActionResult> UserCreate(CreateUserDto model)
+        public async Task<IActionResult> UserCreate(CreateUserViewModel model)
         {
-            if (ModelState.IsValid)
-            {
-                var result = await userController.NewUser(model);
+	        if (ModelState.IsValid)
+	        {
+		        var result = await appplicationUserController.Register(new CreateUserDto
+		        {
+			        Email = model.Email,
+			        Password = model.Password
+		        });
 
-                if (result.Succeeded)
-                {
-                    return RedirectToAction("Admin", "UserList");
-                }
+		        if (result.Succeeded)
+		        {
+			        return RedirectToAction("UserList", "Admin");
+		        }
 
-                foreach (var error in result.Errors)
-                {
-                    ModelState.AddModelError("", error.Description);
-                }
+		        foreach (var error in result.Errors)
+		        {
+			        ModelState.AddModelError("", error.Description);
+		        }
             }
 
+
             return View(model);
+        }
+        public IActionResult UserEdit()
+        {
+	        return View();
         }
     }
 }
