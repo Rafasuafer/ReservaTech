@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace reserbit_api.Models.Loggin
 {
-    public class LoginInputModel
+    public class LoginInputDto
     {
         [Required]
         [EmailAddress]
@@ -18,6 +14,5 @@ namespace reserbit_api.Models.Loggin
 
         [Display(Name = "Remember me?")]
         public bool RememberMe { get; set; }
-
     }
 }
